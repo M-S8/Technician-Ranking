@@ -1,0 +1,885 @@
+
+    <html>
+    <head>
+        <title>Technician Performance Executive Summary</title>
+        <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; color: #333; background-color: #f4f7f6; }
+            .container { max-width: 1200px; margin: 0 auto; background: white; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-radius: 8px; }
+            h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 15px; margin-bottom: 30px; }
+            h2 { color: #2c3e50; margin-top: 40px; border-left: 5px solid #3498db; padding-left: 10px; }
+            h3 { color: #7f8c8d; margin-top: 25px; }
+            table { border-collapse: collapse; width: 100%; margin-bottom: 20px; font-size: 14px; }
+            th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
+            th { background-color: #34495e; color: white; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px; }
+            tr:nth-child(even) { background-color: #f8f9fa; }
+            tr:hover { background-color: #e9ecef; }
+            .explanation { background-color: #e8f6f3; padding: 20px; border-radius: 5px; border-left: 5px solid #1abc9c; margin-bottom: 30px; }
+            .metric-card { background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 5px; display: inline-block; margin-right: 20px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+            .metric-label { font-size: 12px; color: #7f8c8d; text-transform: uppercase; display: block; margin-bottom: 5px; }
+            .metric-value { font-size: 20px; font-weight: bold; color: #2c3e50; }
+            .badge { padding: 3px 8px; border-radius: 10px; font-size: 11px; font-weight: bold; color: white; }
+            .badge-top { background-color: #27ae60; }
+            .badge-bottom { background-color: #e74c3c; }
+            .footer { margin-top: 50px; font-size: 12px; color: #aaa; text-align: center; border-top: 1px solid #eee; padding-top: 20px; }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <h1>Quarterly Technician Performance Executive Summary</h1>
+        
+        <div class="explanation">
+            <h3 style="margin-top:0; color: #16a085;">Methodology: Quality Adjusted Bayesian Ranking</h3>
+            <p>This report ranks technicians based on a <strong>Bayesian Weighted Average</strong> of their profit per job, penalized by their <strong>Recall Rate</strong>.</p>
+            <p><strong>Why this method?</strong></p>
+            <ul>
+                <li>Standard averages can be misleading for technicians with low job volume (volatility).</li>
+                <li>This method "shrinks" the average profit of technicians with low volume towards the <strong>Company Global Average</strong>.</li>
+                <li><strong>New:</strong> Scores are now discounted by the technician's Recall Rate. A 10% recall rate reduces the profit score by 10%.</li>
+            </ul>
+            <p style="font-family: monospace; background: rgba(255,255,255,0.5); padding: 10px; border-radius: 4px;">
+                <strong>Score Formula:</strong> S = [(v / (v + m)) * R + (m / (v + m)) * C] * (1 - RecallRate)
+            </p>
+            <ul style="font-size: 0.9em; color: #555;">
+                <li><strong>v:</strong> Technician's job count (Evidence)</li>
+                <li><strong>R:</strong> Technician's average profit (Observed Mean)</li>
+                <li><strong>C:</strong> Company-wide average profit per job (Prior Mean / Benchmark)</li>
+                <li><strong>m:</strong> Smoothing factor (Median job count of the quarter)</li>
+                <li><strong>RecallRate:</strong> % of jobs resulting in a repeat call (Penalty)</li>
+            </ul>
+        </div>
+    
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+        <h2>Quarter-1 Performance Overview</h2>
+        
+        <div style="margin-bottom: 20px;">
+            <div class="metric-card">
+                <span class="metric-label">Company Avg Profit/Job</span>
+                <span class="metric-value">$143.60</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Median Job Volume</span>
+                <span class="metric-value">151</span>
+            </div>
+             <div class="metric-card">
+                <span class="metric-label">Total Technicians</span>
+                <span class="metric-value">500</span>
+            </div>
+        </div>
+
+        <h3><span class="badge badge-top">TOP 10</span> Highest Performing Technicians</h3>
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Rank</th>
+      <th>Tech ID</th>
+      <th>Job Title</th>
+      <th>District</th>
+      <th>Completes</th>
+      <th>Recall Rate</th>
+      <th>Total Profit ($)</th>
+      <th>Avg Profit/Job ($)</th>
+      <th>Quality Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>TECH_463</td>
+      <td>Senior Tech</td>
+      <td>Atlantic</td>
+      <td>140</td>
+      <td>2.9%</td>
+      <td>36,547.88</td>
+      <td>261.06</td>
+      <td>194.39</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>TECH_470</td>
+      <td>Senior Tech</td>
+      <td>Mid-West</td>
+      <td>147</td>
+      <td>0.7%</td>
+      <td>33,690.56</td>
+      <td>229.19</td>
+      <td>184.56</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>TECH_044</td>
+      <td>Master Tech</td>
+      <td>Atlantic</td>
+      <td>137</td>
+      <td>1.5%</td>
+      <td>31,587.85</td>
+      <td>230.57</td>
+      <td>182.27</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>TECH_278</td>
+      <td>Master Tech</td>
+      <td>Pacific</td>
+      <td>156</td>
+      <td>1.9%</td>
+      <td>35,037.73</td>
+      <td>224.60</td>
+      <td>181.21</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>TECH_321</td>
+      <td>Master Tech</td>
+      <td>Pacific</td>
+      <td>160</td>
+      <td>0.0%</td>
+      <td>34,511.12</td>
+      <td>215.69</td>
+      <td>180.69</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>TECH_034</td>
+      <td>Master Tech</td>
+      <td>Atlantic</td>
+      <td>164</td>
+      <td>3.0%</td>
+      <td>36,096.15</td>
+      <td>220.10</td>
+      <td>177.84</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>TECH_403</td>
+      <td>Senior Tech</td>
+      <td>Pacific</td>
+      <td>159</td>
+      <td>0.0%</td>
+      <td>32,730.66</td>
+      <td>205.85</td>
+      <td>175.53</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>TECH_465</td>
+      <td>Senior Tech</td>
+      <td>North-East</td>
+      <td>142</td>
+      <td>1.4%</td>
+      <td>30,472.08</td>
+      <td>214.59</td>
+      <td>175.50</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>TECH_180</td>
+      <td>Senior Tech</td>
+      <td>South-West</td>
+      <td>156</td>
+      <td>1.3%</td>
+      <td>32,842.99</td>
+      <td>210.53</td>
+      <td>175.34</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>TECH_135</td>
+      <td>Senior Tech</td>
+      <td>Atlantic</td>
+      <td>156</td>
+      <td>5.8%</td>
+      <td>35,211.88</td>
+      <td>225.72</td>
+      <td>174.64</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h3><span class="badge badge-bottom">BOTTOM 10</span> Lowest Performing Technicians</h3>
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Rank</th>
+      <th>Tech ID</th>
+      <th>Job Title</th>
+      <th>District</th>
+      <th>Completes</th>
+      <th>Recall Rate</th>
+      <th>Total Profit ($)</th>
+      <th>Avg Profit/Job ($)</th>
+      <th>Quality Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>491</td>
+      <td>TECH_157</td>
+      <td>Service Tech II</td>
+      <td>Mid-West</td>
+      <td>152</td>
+      <td>3.3%</td>
+      <td>10,215.79</td>
+      <td>67.21</td>
+      <td>101.82</td>
+    </tr>
+    <tr>
+      <td>492</td>
+      <td>TECH_174</td>
+      <td>Service Tech I</td>
+      <td>South-West</td>
+      <td>167</td>
+      <td>2.4%</td>
+      <td>11,452.57</td>
+      <td>68.58</td>
+      <td>101.71</td>
+    </tr>
+    <tr>
+      <td>493</td>
+      <td>TECH_261</td>
+      <td>Service Tech I</td>
+      <td>North-East</td>
+      <td>158</td>
+      <td>3.2%</td>
+      <td>10,630.61</td>
+      <td>67.28</td>
+      <td>101.27</td>
+    </tr>
+    <tr>
+      <td>494</td>
+      <td>TECH_417</td>
+      <td>Service Tech I</td>
+      <td>Pacific</td>
+      <td>154</td>
+      <td>0.6%</td>
+      <td>9,336.00</td>
+      <td>60.62</td>
+      <td>101.04</td>
+    </tr>
+    <tr>
+      <td>495</td>
+      <td>TECH_002</td>
+      <td>Service Tech I</td>
+      <td>South-West</td>
+      <td>164</td>
+      <td>3.0%</td>
+      <td>11,006.18</td>
+      <td>67.11</td>
+      <td>100.61</td>
+    </tr>
+    <tr>
+      <td>496</td>
+      <td>TECH_013</td>
+      <td>Service Tech I</td>
+      <td>South-West</td>
+      <td>172</td>
+      <td>5.8%</td>
+      <td>12,685.24</td>
+      <td>73.75</td>
+      <td>100.22</td>
+    </tr>
+    <tr>
+      <td>497</td>
+      <td>TECH_454</td>
+      <td>Service Tech I</td>
+      <td>South-West</td>
+      <td>136</td>
+      <td>3.7%</td>
+      <td>7,888.80</td>
+      <td>58.01</td>
+      <td>99.25</td>
+    </tr>
+    <tr>
+      <td>498</td>
+      <td>TECH_329</td>
+      <td>Service Tech II</td>
+      <td>Atlantic</td>
+      <td>169</td>
+      <td>4.1%</td>
+      <td>10,578.05</td>
+      <td>62.59</td>
+      <td>96.64</td>
+    </tr>
+    <tr>
+      <td>499</td>
+      <td>TECH_145</td>
+      <td>Service Tech I</td>
+      <td>North-East</td>
+      <td>159</td>
+      <td>5.7%</td>
+      <td>9,704.10</td>
+      <td>61.03</td>
+      <td>95.52</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>TECH_225</td>
+      <td>Service Tech I</td>
+      <td>Pacific</td>
+      <td>154</td>
+      <td>13.6%</td>
+      <td>11,142.99</td>
+      <td>72.36</td>
+      <td>92.95</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+        <h2>Quarter-2 Performance Overview</h2>
+        
+        <div style="margin-bottom: 20px;">
+            <div class="metric-card">
+                <span class="metric-label">Company Avg Profit/Job</span>
+                <span class="metric-value">$141.66</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Median Job Volume</span>
+                <span class="metric-value">149</span>
+            </div>
+             <div class="metric-card">
+                <span class="metric-label">Total Technicians</span>
+                <span class="metric-value">500</span>
+            </div>
+        </div>
+
+        <h3><span class="badge badge-top">TOP 10</span> Highest Performing Technicians</h3>
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Rank</th>
+      <th>Tech ID</th>
+      <th>Job Title</th>
+      <th>District</th>
+      <th>Completes</th>
+      <th>Recall Rate</th>
+      <th>Total Profit ($)</th>
+      <th>Avg Profit/Job ($)</th>
+      <th>Quality Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>TECH_181</td>
+      <td>Senior Tech</td>
+      <td>North-East</td>
+      <td>155</td>
+      <td>0.6%</td>
+      <td>38,396.79</td>
+      <td>247.72</td>
+      <td>194.47</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>TECH_464</td>
+      <td>Master Tech</td>
+      <td>North-East</td>
+      <td>168</td>
+      <td>0.0%</td>
+      <td>37,882.43</td>
+      <td>225.49</td>
+      <td>186.09</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>TECH_143</td>
+      <td>Senior Tech</td>
+      <td>South-West</td>
+      <td>155</td>
+      <td>1.9%</td>
+      <td>35,659.56</td>
+      <td>230.06</td>
+      <td>183.12</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>TECH_054</td>
+      <td>Service Tech II</td>
+      <td>South-West</td>
+      <td>136</td>
+      <td>2.2%</td>
+      <td>31,781.22</td>
+      <td>233.69</td>
+      <td>181.48</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>TECH_401</td>
+      <td>Master Tech</td>
+      <td>North-East</td>
+      <td>167</td>
+      <td>1.8%</td>
+      <td>37,171.68</td>
+      <td>222.58</td>
+      <td>181.11</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>TECH_067</td>
+      <td>Senior Tech</td>
+      <td>Atlantic</td>
+      <td>147</td>
+      <td>2.0%</td>
+      <td>32,890.88</td>
+      <td>223.75</td>
+      <td>178.70</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>TECH_405</td>
+      <td>Senior Tech</td>
+      <td>North-East</td>
+      <td>138</td>
+      <td>3.6%</td>
+      <td>31,410.94</td>
+      <td>227.62</td>
+      <td>176.36</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>TECH_422</td>
+      <td>Master Tech</td>
+      <td>Atlantic</td>
+      <td>156</td>
+      <td>0.6%</td>
+      <td>33,028.78</td>
+      <td>211.72</td>
+      <td>176.36</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>TECH_342</td>
+      <td>Master Tech</td>
+      <td>Atlantic</td>
+      <td>154</td>
+      <td>3.2%</td>
+      <td>33,931.73</td>
+      <td>220.34</td>
+      <td>175.75</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>TECH_092</td>
+      <td>Master Tech</td>
+      <td>North-East</td>
+      <td>138</td>
+      <td>1.4%</td>
+      <td>30,018.49</td>
+      <td>217.53</td>
+      <td>175.55</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h3><span class="badge badge-bottom">BOTTOM 10</span> Lowest Performing Technicians</h3>
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Rank</th>
+      <th>Tech ID</th>
+      <th>Job Title</th>
+      <th>District</th>
+      <th>Completes</th>
+      <th>Recall Rate</th>
+      <th>Total Profit ($)</th>
+      <th>Avg Profit/Job ($)</th>
+      <th>Quality Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>491</td>
+      <td>TECH_043</td>
+      <td>Service Tech I</td>
+      <td>Atlantic</td>
+      <td>161</td>
+      <td>21.1%</td>
+      <td>18,043.97</td>
+      <td>112.07</td>
+      <td>99.62</td>
+    </tr>
+    <tr>
+      <td>492</td>
+      <td>TECH_443</td>
+      <td>Senior Tech</td>
+      <td>Mid-West</td>
+      <td>140</td>
+      <td>8.6%</td>
+      <td>10,268.76</td>
+      <td>73.35</td>
+      <td>99.26</td>
+    </tr>
+    <tr>
+      <td>493</td>
+      <td>TECH_288</td>
+      <td>Service Tech I</td>
+      <td>Atlantic</td>
+      <td>149</td>
+      <td>0.0%</td>
+      <td>8,449.92</td>
+      <td>56.71</td>
+      <td>99.18</td>
+    </tr>
+    <tr>
+      <td>494</td>
+      <td>TECH_084</td>
+      <td>Service Tech I</td>
+      <td>South-West</td>
+      <td>148</td>
+      <td>7.4%</td>
+      <td>10,554.98</td>
+      <td>71.32</td>
+      <td>98.68</td>
+    </tr>
+    <tr>
+      <td>495</td>
+      <td>TECH_166</td>
+      <td>Service Tech I</td>
+      <td>Atlantic</td>
+      <td>142</td>
+      <td>8.5%</td>
+      <td>10,122.83</td>
+      <td>71.29</td>
+      <td>98.25</td>
+    </tr>
+    <tr>
+      <td>496</td>
+      <td>TECH_338</td>
+      <td>Service Tech I</td>
+      <td>South-West</td>
+      <td>166</td>
+      <td>1.8%</td>
+      <td>10,378.81</td>
+      <td>62.52</td>
+      <td>98.15</td>
+    </tr>
+    <tr>
+      <td>497</td>
+      <td>TECH_167</td>
+      <td>Service Tech I</td>
+      <td>Mid-West</td>
+      <td>122</td>
+      <td>22.1%</td>
+      <td>12,439.62</td>
+      <td>101.96</td>
+      <td>96.39</td>
+    </tr>
+    <tr>
+      <td>498</td>
+      <td>TECH_227</td>
+      <td>Service Tech I</td>
+      <td>Atlantic</td>
+      <td>178</td>
+      <td>4.5%</td>
+      <td>11,465.11</td>
+      <td>64.41</td>
+      <td>95.13</td>
+    </tr>
+    <tr>
+      <td>499</td>
+      <td>TECH_237</td>
+      <td>Service Tech I</td>
+      <td>North-East</td>
+      <td>159</td>
+      <td>1.9%</td>
+      <td>8,087.60</td>
+      <td>50.87</td>
+      <td>93.00</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>TECH_228</td>
+      <td>Service Tech I</td>
+      <td>Pacific</td>
+      <td>135</td>
+      <td>8.1%</td>
+      <td>5,365.88</td>
+      <td>39.75</td>
+      <td>85.62</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+        <h2>Quarter-3 Performance Overview</h2>
+        
+        <div style="margin-bottom: 20px;">
+            <div class="metric-card">
+                <span class="metric-label">Company Avg Profit/Job</span>
+                <span class="metric-value">$138.95</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Median Job Volume</span>
+                <span class="metric-value">150</span>
+            </div>
+             <div class="metric-card">
+                <span class="metric-label">Total Technicians</span>
+                <span class="metric-value">500</span>
+            </div>
+        </div>
+
+        <h3><span class="badge badge-top">TOP 10</span> Highest Performing Technicians</h3>
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Rank</th>
+      <th>Tech ID</th>
+      <th>Job Title</th>
+      <th>District</th>
+      <th>Completes</th>
+      <th>Recall Rate</th>
+      <th>Total Profit ($)</th>
+      <th>Avg Profit/Job ($)</th>
+      <th>Quality Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>TECH_115</td>
+      <td>Master Tech</td>
+      <td>Atlantic</td>
+      <td>155</td>
+      <td>1.9%</td>
+      <td>41,078.52</td>
+      <td>265.02</td>
+      <td>199.09</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>TECH_184</td>
+      <td>Service Tech I</td>
+      <td>Pacific</td>
+      <td>169</td>
+      <td>5.9%</td>
+      <td>40,462.60</td>
+      <td>239.42</td>
+      <td>180.81</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>TECH_460</td>
+      <td>Senior Tech</td>
+      <td>North-East</td>
+      <td>166</td>
+      <td>1.8%</td>
+      <td>36,398.83</td>
+      <td>219.27</td>
+      <td>177.87</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>TECH_241</td>
+      <td>Master Tech</td>
+      <td>North-East</td>
+      <td>135</td>
+      <td>2.2%</td>
+      <td>30,874.14</td>
+      <td>228.70</td>
+      <td>177.43</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>TECH_288</td>
+      <td>Master Tech</td>
+      <td>North-East</td>
+      <td>150</td>
+      <td>0.0%</td>
+      <td>32,287.29</td>
+      <td>215.25</td>
+      <td>177.10</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>TECH_220</td>
+      <td>Senior Tech</td>
+      <td>Mid-West</td>
+      <td>177</td>
+      <td>4.5%</td>
+      <td>38,840.88</td>
+      <td>219.44</td>
+      <td>174.27</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>TECH_270</td>
+      <td>Senior Tech</td>
+      <td>South-West</td>
+      <td>169</td>
+      <td>7.7%</td>
+      <td>39,312.28</td>
+      <td>232.62</td>
+      <td>174.07</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>TECH_397</td>
+      <td>Service Tech II</td>
+      <td>Mid-West</td>
+      <td>163</td>
+      <td>0.0%</td>
+      <td>33,457.07</td>
+      <td>205.26</td>
+      <td>173.48</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>TECH_045</td>
+      <td>Master Tech</td>
+      <td>Pacific</td>
+      <td>141</td>
+      <td>5.0%</td>
+      <td>31,429.97</td>
+      <td>222.91</td>
+      <td>170.71</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>TECH_231</td>
+      <td>Senior Tech</td>
+      <td>North-East</td>
+      <td>154</td>
+      <td>0.0%</td>
+      <td>30,892.76</td>
+      <td>200.60</td>
+      <td>170.18</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h3><span class="badge badge-bottom">BOTTOM 10</span> Lowest Performing Technicians</h3>
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Rank</th>
+      <th>Tech ID</th>
+      <th>Job Title</th>
+      <th>District</th>
+      <th>Completes</th>
+      <th>Recall Rate</th>
+      <th>Total Profit ($)</th>
+      <th>Avg Profit/Job ($)</th>
+      <th>Quality Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>491</td>
+      <td>TECH_165</td>
+      <td>Service Tech I</td>
+      <td>Atlantic</td>
+      <td>159</td>
+      <td>2.5%</td>
+      <td>10,010.75</td>
+      <td>62.96</td>
+      <td>97.34</td>
+    </tr>
+    <tr>
+      <td>492</td>
+      <td>TECH_040</td>
+      <td>Service Tech I</td>
+      <td>Mid-West</td>
+      <td>122</td>
+      <td>0.0%</td>
+      <td>5,629.43</td>
+      <td>46.14</td>
+      <td>97.33</td>
+    </tr>
+    <tr>
+      <td>493</td>
+      <td>TECH_092</td>
+      <td>Service Tech I</td>
+      <td>Pacific</td>
+      <td>134</td>
+      <td>9.7%</td>
+      <td>9,663.18</td>
+      <td>72.11</td>
+      <td>97.00</td>
+    </tr>
+    <tr>
+      <td>494</td>
+      <td>TECH_254</td>
+      <td>Service Tech I</td>
+      <td>South-West</td>
+      <td>162</td>
+      <td>4.3%</td>
+      <td>10,631.34</td>
+      <td>65.63</td>
+      <td>96.52</td>
+    </tr>
+    <tr>
+      <td>495</td>
+      <td>TECH_302</td>
+      <td>Service Tech I</td>
+      <td>Pacific</td>
+      <td>134</td>
+      <td>0.7%</td>
+      <td>6,506.20</td>
+      <td>48.55</td>
+      <td>95.58</td>
+    </tr>
+    <tr>
+      <td>496</td>
+      <td>TECH_226</td>
+      <td>Service Tech I</td>
+      <td>North-East</td>
+      <td>155</td>
+      <td>6.5%</td>
+      <td>10,159.71</td>
+      <td>65.55</td>
+      <td>95.09</td>
+    </tr>
+    <tr>
+      <td>497</td>
+      <td>TECH_084</td>
+      <td>Service Tech I</td>
+      <td>South-West</td>
+      <td>143</td>
+      <td>4.9%</td>
+      <td>8,235.93</td>
+      <td>57.59</td>
+      <td>94.39</td>
+    </tr>
+    <tr>
+      <td>498</td>
+      <td>TECH_336</td>
+      <td>Service Tech I</td>
+      <td>Mid-West</td>
+      <td>157</td>
+      <td>0.0%</td>
+      <td>8,100.94</td>
+      <td>51.60</td>
+      <td>94.28</td>
+    </tr>
+    <tr>
+      <td>499</td>
+      <td>TECH_182</td>
+      <td>Service Tech I</td>
+      <td>Pacific</td>
+      <td>157</td>
+      <td>17.8%</td>
+      <td>13,521.05</td>
+      <td>86.12</td>
+      <td>91.97</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>TECH_449</td>
+      <td>Service Tech I</td>
+      <td>Atlantic</td>
+      <td>184</td>
+      <td>3.3%</td>
+      <td>10,795.37</td>
+      <td>58.67</td>
+      <td>91.64</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <div class="footer">
+            Generated on 2025-12-03 16:23:15 | Technician Ranking Model Public Demo
+        </div>
+    </div>
+    </body>
+    </html>
+    
