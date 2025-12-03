@@ -1,4 +1,4 @@
-# Technician Performance Ranking Model (Public Demo)
+# Technician Performance Ranking Model 
 
 ## Overview
 This project demonstrates a robust analytical framework for ranking field technicians based on **profitability** while accounting for **work quality** and **job volume volatility**.
